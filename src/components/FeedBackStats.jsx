@@ -1,0 +1,20 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+function FeedBackStats({ feedback }) {
+  //calc avg rate
+  let avgRate =
+    feedback.reduce((acc, cur) => {
+      return acc + cur.rating;
+    }, 0) / feedback.length;
+  avgRate = avgRate.toFixed(1).replace(/[.,]0$/, '');
+  return (
+    <div className="feedback-stats">
+      <h4>{feedback.length} Reviews </h4>
+      <h4>Average Rate: {isNaN(avgRate) ? 0 : avgRate}</h4>
+    </div>
+  );
+}
+FeedBackStats.propTypes = {
+  feedback: PropTypes.array.isRequired,
+};
+export default FeedBackStats;
