@@ -16,7 +16,7 @@ export const FeedbackProvider = ({ children }) => {
   //Fetch feedback - using proxy
   const fetchFeedback = async () => {
     //const response = await fetch(`/feedback?_sort=id&_order=desc`);
-    const response = await fetch(`/feedback`);
+    const response = await fetch(`https://my-json-server.typicode.com/AssafAinT/feedbackapp/feedback?_sort=id&_order=desc`);
 
     const data = await response.json();
     setFeedback(data);
@@ -26,13 +26,13 @@ export const FeedbackProvider = ({ children }) => {
   const deleteFeedback = async (id) => {
     if (window.confirm('Are you sure you want to delete?')) {
       //return array minus the one deleted
-      await fetch(`/feedback/${id}`, { method: 'DELETE' });
+      await fetch(`https://my-json-server.typicode.com/AssafAinT/feedbackapp/feedback/${id}`, { method: 'DELETE' });
       setFeedback(feedback.filter((item) => item.id !== id));
     }
   };
   //update the feedback
   const updateFeedback = async (id, updItem) => {
-    const response = await fetch(`/feedback/${id}`, {
+    const response = await fetch(`https://my-json-server.typicode.com/AssafAinT/feedbackapp/feedback/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updItem),
@@ -59,7 +59,7 @@ export const FeedbackProvider = ({ children }) => {
   };
   //add feedback
   const addFeedback = async (newFeedback) => {
-    const response = await fetch('/feedback', {
+    const response = await fetch('https://my-json-server.typicode.com/AssafAinT/feedbackapp/feedback', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
